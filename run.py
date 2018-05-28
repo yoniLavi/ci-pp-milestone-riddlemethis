@@ -28,20 +28,22 @@ def ready():
     
 @app.route('/riddleme/<username>', methods=['GET', 'POST'])
 def riddleme(username):
-    score = 0
     if request.method == 'POST':
         form = request.form
         if form.get('first-question') == 'true':
+            score = 0
             riddle = get_riddle(1)[0]
             context = {
                 'riddle_index': 1,
                 'riddle': riddle['riddle_text'],
                 'answer': riddle['riddle_answer'],
-                'username': username
+                'username': username,
+                'current_score': score
             }
             return render_template('riddle.html', context=context)
         else:
             riddle_index = int(request.form.get('riddle_index'))
+            score = int(request.form.get('current_score'))
             riddle = get_riddle(riddle_index)[0]
             submitted_answer = request.form.get('submitted_answer').strip().lower()
             actual_answer = riddle['riddle_answer'].strip().lower()
@@ -60,7 +62,7 @@ def riddleme(username):
                 else:
                     next_riddle = get_riddle(riddle_index)[0]
                     
-            elif riddle_index <= 10:
+            else:
                 if correct:
                     riddle_index += 1
                     score += 1
@@ -78,7 +80,8 @@ def riddleme(username):
                 'riddle_index': next_riddle['index'],
                 'riddle': next_riddle['riddle_text'],
                 'answer': next_riddle['riddle_answer'],
-                'username': username
+                'username': username,
+                'current_score': score
             }
             return render_template('riddle.html', context=context)
                 
