@@ -7,11 +7,13 @@ app = Flask(__name__)
 app.secret_key = 'This shoudl be a secret!'
 app.url_map.strict_slashes = False
 
+# Get the info for the next riddle
 def get_riddle(index):
     with open('data/riddles.json') as json_riddles:
         riddles = json.loads(json_riddles.read())
         return [riddle for riddle in riddles if riddle['index'] == index]
-    
+
+# Inialize the game with some default values
 def init_game(username):
     score = 0
     attempt = 1
@@ -25,7 +27,8 @@ def init_game(username):
         'attempt': attempt
     }
     return context
-        
+
+# Function to add a player to the leaderboard after the game has been completed.
 def add_to_leaderboard(username, final_score):
     leaders = get_leaders()
     print(leaders)
@@ -33,6 +36,7 @@ def add_to_leaderboard(username, final_score):
         if not (username, final_score) in leaders:
             leaderboard.write('\n{}:{}'.format(str(username), str(final_score)))
 
+# Function to get current top 10 leaders
 def get_leaders():
     with open('data/leaders.txt') as leaders:
         leaders = [line for line in leaders.readlines()[1:]]
@@ -46,6 +50,7 @@ def get_leaders():
 def index():
     return render_template("index.html")
     
+# Provide instructions to the user.
 @app.route('/ready/', methods=['GET', 'POST'])
 def ready():
     if request.method == 'POST':
@@ -54,7 +59,8 @@ def ready():
         return render_template("ready.html", username=user)
     flash('You can\'t access that page directly. Enter your username below:')
     return redirect('/')
-    
+
+# Route to loop through to show riddles
 @app.route('/riddleme/<username>', methods=['GET', 'POST'])
 def riddleme(username):
     if request.method == 'POST':
@@ -147,10 +153,18 @@ def riddleme(username):
     # Redirect to the homepage with an error if using GET
     flash('You can\'t access that page directly. Enter your username below:')
     return redirect('/')
-    
+
+# Dislay only for the leaderboard
 @app.route('/leaders')
 def leaders():
     leaders = get_leaders()
     return render_template("leaders.html", leaders=leaders)
+
+# Dead route to redirect curious tinkerers
+@app.route('/riddleme')
+def riddle_redirect():
+    # Redirect to the homepage with an error
+    flash('You can\'t access that page directly. Enter your username below:')
+    return redirect('/')
     
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
