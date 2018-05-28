@@ -10,11 +10,11 @@
 <section class="row text-center">
     <div class="col">
         <div class="dark-div">
-            <p class="lead">Hi {{ username }}! You're about to play Riddle Me This! You'll see 10 riddles, and you'll have two chances to answer each one.</p>
-            <p class="lead">There's no time limit, but you'll only get points for correct answers. So take your time and think outside the box.</p>
-            <p class="lead">If you're good enough, you'll make it to the leaderboard!</p>
-            <h4>When you're ready to start, click go!</h4>
-            <button class="main-button btn btn-success btn-lg btn-block">Go!</button>
+            <h1>Riddle {{ context.riddle_index }}:</h1>
+            <form method="POST">
+                <input type="hidden" name="riddle_index" id="riddle_index" value="{{ context.riddle_index }}">
+                <button type="submit" class="main-button btn btn-success btn-lg btn-block">Go!</button>
+            </form>
         </div>
     </div>
 </section>

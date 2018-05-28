@@ -20,7 +20,7 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-            <input id="username" class="form-control" type="text" name="username" placeholder="Enter your first name..."/>
+            <input id="username" class="form-control" type="text" name="username" placeholder="Enter username (alphanumeric, max 15 characters)..." pattern="^[a-zA-Z0-9]+$" maxlength="15" required/>
             <button class="main-button btn btn-success btn-lg btn-block">Click to Play!</button>
         </form>
     </div>
