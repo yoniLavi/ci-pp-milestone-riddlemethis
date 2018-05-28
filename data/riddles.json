@@ -1,0 +1,52 @@
+[
+    {
+        "index": 1,
+        "riddle_text": "This is riddle 1",
+        "riddle_answer": "This is answer 1"
+    },
+    {
+        "index": 2,
+        "riddle_text": "This is riddle 2",
+        "riddle_answer": "This is answer 2"
+    },
+    {
+        "index": 3,
+        "riddle_text": "This is riddle 3",
+        "riddle_answer": "This is answer 3"
+    },
+    {
+        "index": 4,
+        "riddle_text": "This is riddle 4",
+        "riddle_answer": "This is answer 4"
+    },
+    {
+        "index": 5,
+        "riddle_text": "This is riddle 5",
+        "riddle_answer": "This is answer 5"
+    },
+    {
+        "index": 6,
+        "riddle_text": "This is riddle 6",
+        "riddle_answer": "This is answer 6"
+    },
+    {
+        "index": 7,
+        "riddle_text": "This is riddle 7",
+        "riddle_answer": "This is answer 7"
+    },
+    {
+        "index": 8,
+        "riddle_text": "This is riddle 8",
+        "riddle_answer": "This is answer 8"
+    },
+    {
+        "index": 9,
+        "riddle_text": "This is riddle 9",
+        "riddle_answer": "This is answer 9"
+    },
+    {
+        "index": 10,
+        "riddle_text": "This is riddle 10",
+        "riddle_answer": "This is answer 10"
+    }
+]

@@ -11,7 +11,19 @@
     <div class="col">
         <div class="dark-div">
             <h1>Riddle {{ context.riddle_index }}:</h1>
+            <p class="lead">{{ context.riddle }}</p>
+            <p class="text-muted">Answer: {{ context.answer }}</p>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="messages alert alert-danger" role="alert">
+                          <strong>Whoops!</strong> {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <form method="POST">
+                <input type="text" class="form-control" id="submitted_answer" name="submitted_answer" placeholder="Enter your answer!" pattern="^[a-zA-Z0-9 ]+$" autofocus required>
                 <input type="hidden" name="riddle_index" id="riddle_index" value="{{ context.riddle_index }}">
                 <button type="submit" class="main-button btn btn-success btn-lg btn-block">Go!</button>
             </form>

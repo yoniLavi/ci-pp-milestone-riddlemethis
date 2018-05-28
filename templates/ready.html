@@ -15,6 +15,7 @@
             <p class="lead">If you're good enough, you'll make it to the leaderboard!</p>
             <h4>When you're ready to start, click go!</h4>
             <form method="POST" action="/riddleme/{{ username }}">
+                <input type="hidden" value="true" name="first-question">
                 <button class="main-button btn btn-success btn-lg btn-block">Go!</button>
             </form>
         </div>
