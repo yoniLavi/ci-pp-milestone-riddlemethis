@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block core %}
+<section class="row text-center">
+    <div id="home-header" class="col">
+        <h1 class="main-header display-3">Reflect!</h1>
+    </div>
+</section>
+
+<section class="row text-center">
+    <div class="col">
+        <div class="dark-div">
+            <h1>Final Score: {{ final_score }}</h1>
+            <p class="lead">Leaderboard:</p>
+            <a href="{{ url_for('index') }}"><button class="main-button btn btn-success btn-lg btn-block">Play Again!</button></a>
+        </div>
+    </div>
+</section>
+{% endblock %}

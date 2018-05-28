@@ -3,7 +3,7 @@
 {% block core %}
 <section class="row text-center">
     <div id="home-header" class="col">
-        <h1 class="main-header display-3">Ready?</h1>
+        <h1 class="main-header display-3">Think!</h1>
     </div>
 </section>
 
@@ -33,7 +33,7 @@
                 <input type="hidden" name="riddle_index" id="riddle_index" value="{{ context.riddle_index }}">
                 <input type="hidden" name="current_score" id="current_score" value="{{ context.current_score }}">
                 <input type="hidden" name="attempt" id="attempt" value="{{ context.attempt }}">
-                <button type="submit" class="main-button btn btn-success btn-lg btn-block">Go!</button>
+                <button type="submit" class="main-button btn btn-success btn-lg btn-block">Next Question</button>
             </form>
             <p class="lead">Current Score: <strong>{{ context.current_score }}</strong></p>
             <p class="lead">Current Attempt: <strong>{{ context.attempt }}</strong></p>

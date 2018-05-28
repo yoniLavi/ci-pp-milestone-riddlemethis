@@ -1,5 +1,6 @@
 import os
 import json
+import operator
 from flask import Flask, render_template, request, flash, redirect
 
 app = Flask(__name__)
@@ -25,6 +26,21 @@ def init_game(username):
     }
     return context
         
+def add_to_leaderboard(username, final_score):
+    leaders = get_leaders()
+    print(leaders)
+    with open('data/leaders.txt', 'a') as leaderboard:
+        if not (username, final_score) in leaders:
+            leaderboard.write('\n{}:{}'.format(str(username), str(final_score)))
+
+def get_leaders():
+    with open('data/leaders.txt') as leaders:
+        leaders = [line for line in leaders.readlines()[1:]]
+        sorted_leaders = []
+        for leader in leaders:
+            tupe = (leader.split(':')[0].strip(), int(leader.split(':')[1].strip()))
+            sorted_leaders.append(tupe)
+        return sorted(sorted_leaders, key=lambda x: x[1])[::-1][:10]
 
 @app.route('/')
 def index():
@@ -93,13 +109,19 @@ def riddleme(username):
                     score += 1
                     attempt = 1
                     if riddle_index > 10:
-                        return redirect('/')
+                        final_score = score
+                        add_to_leaderboard(username, final_score)
+                        leaders = get_leaders()
+                        return render_template('leaders.html', final_score=final_score, leaders=leaders)
                     else:
                         next_riddle = get_riddle(riddle_index)[0]
                         flash('Nice work! You nailed it!', 'success')
                 else:
                     if riddle_index > 10:
-                        return redirect('/')
+                        final_score = score
+                        add_to_leaderboard(username, final_score)
+                        leaders = get_leaders()
+                        return render_template('leaders.html', final_score=final_score, leaders=leaders)
                     else:
                         if attempt >= 2: 
                             riddle_index += 1
@@ -125,5 +147,10 @@ def riddleme(username):
     # Redirect to the homepage with an error if using GET
     flash('You can\'t access that page directly. Enter your username below:')
     return redirect('/')
+    
+@app.route('/leaders')
+def leaders():
+    leaders = get_leaders()
+    return render_template("leaders.html")
     
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
