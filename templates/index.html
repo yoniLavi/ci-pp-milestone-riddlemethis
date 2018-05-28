@@ -9,10 +9,24 @@
 
 <section class="row text-center">
     <div class="col-sm-6 offset-sm-3">
-        <form id="mainform">
+        
+        <form method=POST action="/ready/" class="mainform">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="messages alert alert-danger" role="alert">
+                          <strong>Error: </strong> {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <input id="username" class="form-control" type="text" name="username" placeholder="Enter your first name..."/>
             <button class="main-button btn btn-success btn-lg btn-block">Click to Play!</button>
         </form>
     </div>
 </section>
+{% endblock %}
+
+{% block postloadjs %}
+<script type="text/javascript"></script>
 {% endblock %}

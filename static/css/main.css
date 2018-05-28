@@ -51,7 +51,7 @@ nav {
 .main-header {
     font-weight: 700;
     background: rgba(255,50,0, 0.45);
-    border-radius: 0px 0px 20px 20px;
+    border-radius: 0px 0px .25rem .25rem;
     width: 60%;
     margin: auto
 }
@@ -63,7 +63,7 @@ nav {
     box-shadow: 0px 0px 10px rgba(255,50,0, 0.75);
     margin-top: 20px;
     height: 86px;
-    border-radius: 20px;
+    border-radius: .25rem;
     transition: all 0.25s ease-in-out;
 }
 
@@ -74,8 +74,20 @@ nav {
     transition: all 0.25s ease-in-out;
 }
 
-#mainform {
+.mainform {
     margin-top: calc(45vh - 142px);
+}
+
+.messages {
+    margin-top: 10px;
+}
+
+.dark-div {
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: .25rem;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 10px rgba(255, 55, 0, .45);
 }
 
 /*--------------------------------------------- Footer CSS*/
