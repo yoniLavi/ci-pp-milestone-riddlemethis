@@ -4,7 +4,7 @@ import operator
 from flask import Flask, render_template, request, flash, redirect
 
 app = Flask(__name__)
-app.secret_key = 'This shoudl be a secret!'
+app.secret_key = 'This should be a secret!'
 app.url_map.strict_slashes = False
 
 # Get the info for the next riddle
