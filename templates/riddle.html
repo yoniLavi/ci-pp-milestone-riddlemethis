@@ -26,9 +26,11 @@
                 <input type="text" class="form-control" id="submitted_answer" name="submitted_answer" placeholder="Enter your answer!" pattern="^[a-zA-Z0-9 ]+$" autofocus required>
                 <input type="hidden" name="riddle_index" id="riddle_index" value="{{ context.riddle_index }}">
                 <input type="hidden" name="current_score" id="current_score" value="{{ context.current_score }}">
+                <input type="hidden" name="attempt" id="attempt" value="{{ context.attempt }}">
                 <button type="submit" class="main-button btn btn-success btn-lg btn-block">Go!</button>
             </form>
             <p class="lead">Current Score: <strong>{{ context.current_score }}</strong></p>
+            <p class="lead">Current Attempt: <strong>{{ context.attempt }}</strong></p>
         </div>
     </div>
 </section>
