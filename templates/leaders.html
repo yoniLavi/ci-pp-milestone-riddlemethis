@@ -3,16 +3,42 @@
 {% block core %}
 <section class="row text-center">
     <div id="home-header" class="col">
+        {% if final_score %}
         <h1 class="main-header display-3">Reflect!</h1>
+        {% else %}
+        <h1 class="main-header display-3">Leaders!</h1>
+        {% endif %}
     </div>
 </section>
 
 <section class="row text-center">
     <div class="col">
         <div class="dark-div">
+            {% if final_score %}
             <h1>Final Score: {{ final_score }}</h1>
+            {% endif %}
+            
+            {% if leaders | length > 0 %}
             <p class="lead">Leaderboard:</p>
+            <table class="table leaderboard-table">
+                <tbody>
+                    <tr>
+                        <th>Username</th>
+                        <th>High Score</th>
+                    </tr>
+                    {% for leader in leaders %}
+                    <tr>
+                        <td>{{ leader.0 }}</td>
+                        <td>{{ leader.1 }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
             <a href="{{ url_for('index') }}"><button class="main-button btn btn-success btn-lg btn-block">Play Again!</button></a>
+            {% else %}
+            <p class="lead">There is currently no leaderboard. You should play!</p>
+            <a href="{{ url_for('index') }}"><button class="main-button btn btn-success btn-lg btn-block">Play!</button></a>
+            {% endif %}
         </div>
     </div>
 </section>

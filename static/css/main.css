@@ -10,6 +10,10 @@ body {
 	background-size: cover;
 }
 
+body a, body a:hover {
+    text-decoration: none;
+}
+
 .main-header {
     font-weight: 700;
 }
@@ -53,7 +57,7 @@ nav {
     background: rgba(255,50,0, 0.45);
     border-radius: 0px 0px .25rem .25rem;
     width: 60%;
-    margin: auto
+    margin: auto;
 }
 
 .main-button,
@@ -122,6 +126,14 @@ footer .col {
 	padding: 10px 0;
 	margin: auto;
 	max-height: 76px;
+}
+
+/*--------------------------------------------- Leaderboard*/
+
+.leaderboard-table td, .leaderboard-table th {
+    padding: 0;
+    vertical-align: middle;
+    border-top: none;
 }
 
 /*--------------------------------------------- Media Queries*/

@@ -151,6 +151,6 @@ def riddleme(username):
 @app.route('/leaders')
 def leaders():
     leaders = get_leaders()
-    return render_template("leaders.html")
+    return render_template("leaders.html", leaders=leaders)
     
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
