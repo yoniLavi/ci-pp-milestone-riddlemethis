@@ -56,6 +56,28 @@ nav {
     margin: auto
 }
 
+.main-button,
+.main-button:focus {
+    border: none;
+    background-color: rgba(255,50,0, 0.45);
+    box-shadow: 0px 0px 10px rgba(255,50,0, 0.75);
+    margin-top: 20px;
+    height: 86px;
+    border-radius: 20px;
+    transition: all 0.25s ease-in-out;
+}
+
+.main-button:hover {
+    border: none;
+    background-color: rgba(40, 167, 69, 0.75);
+    box-shadow: 0px 0px 10px rgba(40, 167, 69, 0.75);
+    transition: all 0.25s ease-in-out;
+}
+
+#mainform {
+    margin-top: calc(45vh - 142px);
+}
+
 /*--------------------------------------------- Footer CSS*/
 
 footer {
@@ -88,4 +110,26 @@ footer .col {
 	padding: 10px 0;
 	margin: auto;
 	max-height: 76px;
+}
+
+/*--------------------------------------------- Media Queries*/
+
+@media (max-width: 768px) {
+	.main-header {
+	    width: 90%;
+	}
+	
+	.display-3 {
+	    font-size: 1.75rem;
+	}
+}
+
+@media (max-width: 992px) {
+	.main-header {
+	    width: 60%;
+	}
+	
+	.display-3 {
+	    font-size: 3rem;
+	}
 }
