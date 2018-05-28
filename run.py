@@ -10,7 +10,20 @@ def get_riddle(index):
     with open('data/riddles.json') as json_riddles:
         riddles = json.loads(json_riddles.read())
         return [riddle for riddle in riddles if riddle['index'] == index]
-        
+    
+def init_game(username):
+    score = 0
+    attempt = 1
+    riddle = get_riddle(1)[0]
+    context = {
+        'riddle_index': 1,
+        'riddle': riddle['riddle_text'],
+        'answer': riddle['riddle_answer'],
+        'username': username,
+        'current_score': score,
+        'attempt': attempt
+    }
+    return context
         
 
 @app.route('/')
@@ -30,32 +43,32 @@ def ready():
 def riddleme(username):
     if request.method == 'POST':
         form = request.form
+        
+        ''' If we're on the first question, initialize the game with a default attempt, score, riddle index, etc.
+        Otherwise, get the game info from the form that was submitted '''
+        
         if form.get('first-question') == 'true':
-            score = 0
-            attempt = 1
-            riddle = get_riddle(1)[0]
-            context = {
-                'riddle_index': 1,
-                'riddle': riddle['riddle_text'],
-                'answer': riddle['riddle_answer'],
-                'username': username,
-                'current_score': score,
-                'attempt': attempt
-            }
+            context = init_game(username)
             return render_template('riddle.html', context=context)
         else:
+            # Get attempt number, riddle index, current score and the riddle from the riddle file to compare against
             attempt = int(request.form.get('attempt'))
             riddle_index = int(request.form.get('riddle_index'))
             score = int(request.form.get('current_score'))
             riddle = get_riddle(riddle_index)[0]
+            
+            # Check whether the answer is correct
             submitted_answer = request.form.get('submitted_answer').strip().lower()
             actual_answer = riddle['riddle_answer'].strip().lower()
             correct = submitted_answer == actual_answer
             
-            print('Riddle Index: {}'.format(riddle_index))
-            print('Riddle Object: {}'.format(riddle))
-            print('Answers: \n\tSubmitted: {} --> Actual: {}'.format(submitted_answer, actual_answer))
-            print('Correct: {}'.format(correct))
+            ''' If we're on the first riddle, check whether or not it's correct.
+            If it's correct, add 1 to score, reset attempt to 1 for the next riddle,
+            and increment the riddle index. Then get the next riddle. 
+            
+            If it's wrong, check whether we're on attempt #2 and if so, increment the
+            riddle index w/o adding to the score, then get the next riddle. If not, just
+            return the same riddle again after incrementing the attempt. '''
             
             if riddle_index == 1:
                 if correct:
@@ -71,7 +84,6 @@ def riddleme(username):
                     else:
                         attempt += 1
                         next_riddle = get_riddle(riddle_index)[0]
-                    
             else:
                 if correct:
                     riddle_index += 1
@@ -92,9 +104,10 @@ def riddleme(username):
                         else:
                             attempt += 1
                             next_riddle = get_riddle(riddle_index)[0]
-                
+            
+            # Now just populate a context dictionary to use in the template, and return the template
             context = {
-                'riddle_index': next_riddle['index'],
+                'riddle_index': next_riddle['index'], # We use the internal riddle index for clarity here
                 'riddle': next_riddle['riddle_text'],
                 'answer': next_riddle['riddle_answer'],
                 'username': username,
@@ -102,10 +115,9 @@ def riddleme(username):
                 'attempt': attempt
             }
             return render_template('riddle.html', context=context)
-                
+            
+    # Redirect to the homepage with an error if using GET
     flash('You can\'t access that page directly. Enter your username below:')
     return redirect('/')
-        
-        
     
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
