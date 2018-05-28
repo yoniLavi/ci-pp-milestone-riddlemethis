@@ -98,11 +98,11 @@ def riddleme(username):
                         riddle_index += 1
                         attempt = 1
                         next_riddle = get_riddle(riddle_index)[0]
-                        flash('That was your last attempt. How about a new riddle?', 'error')
+                        flash('"{}" was your last attempt. The answer was "{}". How about a new riddle?'.format(submitted_answer, actual_answer), 'error')
                     else:
                         attempt += 1
                         next_riddle = get_riddle(riddle_index)[0]
-                        flash('That\'s not right. You\'ve got one more try...', 'error')
+                        flash('"{}" wasn\'t right. You\'ve got one more try...'.format(submitted_answer), 'error')
             else:
                 if correct:
                     riddle_index += 1
@@ -127,11 +127,11 @@ def riddleme(username):
                             riddle_index += 1
                             attempt = 1
                             next_riddle = get_riddle(riddle_index)[0]
-                            flash('That was your last attempt. How about a new riddle?', 'error')
+                            flash('"{}" was your last attempt. The answer was "{}". How about a new riddle?'.format(submitted_answer, actual_answer), 'error')
                         else:
                             attempt += 1
                             next_riddle = get_riddle(riddle_index)[0]
-                            flash('That\'s not right. You\'ve got one more try...', 'error')
+                            flash('"{}" wasn\'t right. You\'ve got one more try...'.format(submitted_answer), 'error')
             
             # Now just populate a context dictionary to use in the template, and return the template
             context = {

@@ -1,52 +1,52 @@
 [
     {
         "index": 1,
-        "riddle_text": "This is riddle 1",
-        "riddle_answer": "This is answer 1"
+        "riddle_text": "What starts with \"e\", ends with \"e\", and contains one letter? (One Word)",
+        "riddle_answer": "Envelope"
     },
     {
         "index": 2,
-        "riddle_text": "This is riddle 2",
-        "riddle_answer": "This is answer 2"
+        "riddle_text": "With pointed fangs I sit and wait; with piercing force I crunch out fate; grabbing victims, proclaiming might; physically joining with a single bite. What am I? (One Word)",
+        "riddle_answer": "Stapler"
     },
     {
         "index": 3,
-        "riddle_text": "This is riddle 3",
-        "riddle_answer": "This is answer 3"
+        "riddle_text": "You throw away the outside of me, eat the inside of me, then throw away the inside of me. What am I? (Four Words)",
+        "riddle_answer": "Corn on the Cob"
     },
     {
         "index": 4,
-        "riddle_text": "This is riddle 4",
-        "riddle_answer": "This is answer 4"
+        "riddle_text": "I am the beginning of the end, and the end of time and space. I am essential to creation, and I surround every place. What am I? (Three Words)",
+        "riddle_answer": "The Letter E"
     },
     {
         "index": 5,
-        "riddle_text": "This is riddle 5",
-        "riddle_answer": "This is answer 5"
+        "riddle_text": "I disappear when you say my name. What am I? (One Word)",
+        "riddle_answer": "Silence"
     },
     {
         "index": 6,
-        "riddle_text": "This is riddle 6",
-        "riddle_answer": "This is answer 6"
+        "riddle_text": "I have seas but no water, coasts but no sand, towns without people, and mountains, but no land. What am I? (One Word)",
+        "riddle_answer": "Map"
     },
     {
         "index": 7,
-        "riddle_text": "This is riddle 7",
-        "riddle_answer": "This is answer 7"
+        "riddle_text": "I always run but never walk. I often murmur, but never talk. I have a bed, but don't need sleep, and have a mouth, but never eat. What am I? (One Word)",
+        "riddle_answer": "River"
     },
     {
         "index": 8,
-        "riddle_text": "This is riddle 8",
-        "riddle_answer": "This is answer 8"
+        "riddle_text": "I'm rarely touched, but often held. If you've got wit, you'll use me well. What am I? (One Word)",
+        "riddle_answer": "Tongue"
     },
     {
         "index": 9,
-        "riddle_text": "This is riddle 9",
-        "riddle_answer": "This is answer 9"
+        "riddle_text": "I'll take what you receive and surrender it all by waving my flag. What am I? (One Word)",
+        "riddle_answer": "Mailbox"
     },
     {
         "index": 10,
-        "riddle_text": "This is riddle 10",
-        "riddle_answer": "This is answer 10"
+        "riddle_text": "I always ask, but never answer. What am I? (One Word)",
+        "riddle_answer": "Owl"
     }
 ]
