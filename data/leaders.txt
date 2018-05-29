@@ -9,3 +9,4 @@ Angela:5
 Yvonne:9
 Hannah:10
 Albert:10
+Chris:10
