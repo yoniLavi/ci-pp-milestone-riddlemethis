@@ -34,7 +34,11 @@
                     {% endfor %}
                 </tbody>
             </table>
+            {% if final_score %}
             <a href="{{ url_for('index') }}"><button class="main-button btn btn-success btn-lg btn-block">Play Again!</button></a>
+            {% else %}
+            <a href="{{ url_for('index') }}"><button class="main-button btn btn-success btn-lg btn-block">Play!</button></a>
+            {% endif %}
             {% else %}
             <p class="lead">There is currently no leaderboard. You should play!</p>
             <a href="{{ url_for('index') }}"><button class="main-button btn btn-success btn-lg btn-block">Play!</button></a>
