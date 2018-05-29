@@ -10,7 +10,7 @@
 <section class="row text-center">
     <div class="col">
         <div class="dark-div">
-            <h1>Riddle {{ context.riddle_index }}:</h1>
+            <h1>Riddle {{ context.riddle_index + 1 }}:</h1>
             <p class="lead">{{ context.riddle }}</p>
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}

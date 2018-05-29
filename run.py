@@ -1,6 +1,5 @@
 import os
 import json
-import operator
 from flask import Flask, render_template, request, flash, redirect, session
 
 app = Flask(__name__)
@@ -11,21 +10,15 @@ app.url_map.strict_slashes = False # make URLs trailing-slash-agnostic
 def get_riddle(index):
     with open('data/riddles.json') as json_riddles:
         riddles = json.loads(json_riddles.read())
-        # We try to get the riddle, but if there's an index error it means we are trying to get
-        # riddles['index'] == 11 which doesn't exist. In this case we return None. Catching the error here
-        # prevents us from having a bunch of if statements in our game logic.
-        try:
-            return [riddle for riddle in riddles if riddle['index'] == index][0]
-        except IndexError:
-            return None
+        return riddles[index] if index < 10 else None # Return None to avoid IndexError on the last riddle
 
 # Inialize the game with some default values
 def init_game(username):
     score = 0
     attempt = 1
-    riddle = get_riddle(1)
+    riddle = get_riddle(0)
     context = {
-        'riddle_index': 1,
+        'riddle_index': 0,
         'riddle': riddle['riddle_text'],
         'answer': riddle['riddle_answer'],
         'username': username,
@@ -92,7 +85,7 @@ def riddleme(username):
             correct = submitted_answer == actual_answer
             
             # Scoring/game logic
-            while riddle_index <= 10:
+            while riddle_index < 10:
                 if correct:
                     riddle_index += 1
                     score += 1
@@ -115,7 +108,7 @@ def riddleme(username):
                 # and return the leaderboard instead
                 if next_riddle is not None:
                     context = {
-                        'riddle_index': next_riddle['index'], # We use the internal riddle index for clarity here
+                        'riddle_index': riddle_index, # We use the internal riddle index for clarity here
                         'riddle': next_riddle['riddle_text'],
                         'answer': next_riddle['riddle_answer'],
                         'username': username,
